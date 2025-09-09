@@ -1,37 +1,37 @@
-# Sample testbench for a Tiny Tapeout project
+# ALU_4bit – Verilog + Cocotb Testbench
 
-This is a sample testbench for a Tiny Tapeout project. It uses [cocotb](https://docs.cocotb.org/en/stable/) to drive the DUT and check the outputs.
-See below to get started or for more information, check the [website](https://tinytapeout.com/hdl/testing/).
+## 📝 Project Description
+This project implements a simple **4-bit ALU** (Arithmetic Logic Unit) in Verilog.  
+The ALU supports arithmetic, logic, and comparison operations selected using a 4-bit control input (`ena`).
 
-## Setting up
+A **Cocotb testbench** is provided to simulate and verify the ALU functionality.
 
-1. Edit [Makefile](Makefile) and modify `PROJECT_SOURCES` to point to your Verilog files.
-2. Edit [tb.v](tb.v) and replace `tt_um_example` with your module name.
+---
 
-## How to run
+## 🔧 ALU Features
 
-To run the RTL simulation:
+The ALU takes two 4-bit inputs (`ui_in` and `uio_in`) and a 4-bit control signal (`ena`).  
+The result is given on the 8-bit output (`uo_out`).
 
-```sh
-make -B
-```
+### Supported Operations
 
-To run gatelevel simulation, first harden your project and copy `../runs/wokwi/results/final/verilog/gl/{your_module_name}.v` to `gate_level_netlist.v`.
+| `ena` (opcode) | Operation             | Description                                    |
+|----------------|-----------------------|------------------------------------------------|
+| `0000`         | ADD                   | `uo_out = ui_in + uio_in`                      |
+| `0001`         | SUB                   | `uo_out = ui_in - uio_in`                      |
+| `0010`         | MUL                   | `uo_out = ui_in * uio_in`                      |
+| `0011`         | DIV                   | `uo_out = ui_in / uio_in` (integer division)   |
+| `0100`         | AND                   | `uo_out = ui_in & uio_in`                      |
+| `0101`         | OR                    | `uo_out = ui_in | uio_in`                      |
+| `0110`         | NOT (ui_in)           | `uo_out = ~ui_in`                              |
+| `0111`         | NOT (uio_in)          | `uo_out = ~uio_in`                             |
+| `1000`         | SQUARE (ui_in)        | `uo_out = ui_in * ui_in`                       |
+| `1001`         | SQUARE (uio_in)       | `uo_out = uio_in * uio_in`                     |
+| `1010`         | LESS THAN             | `uo_out = 0xFF if ui_in < uio_in else 0`       |
+| `1011`         | EQUAL                 | `uo_out = 0xFF if ui_in == uio_in else 0`      |
+| `1100`         | GREATER THAN          | `uo_out = 0xFF if ui_in > uio_in else 0`       |
 
-Then run:
+---
 
-```sh
-make -B GATES=yes
-```
+## 📂 Repository Structure
 
-## How to view the VCD file
-
-Using GTKWave
-```sh
-gtkwave tb.vcd tb.gtkw
-```
-
-Using Surfer
-```sh
-surfer tb.vcd
-```
