@@ -15,7 +15,7 @@ project:
 
   # List your project's source files here.
   source_files:
-    - "src/ALU_4bit.v"
+    - "src/project.v"
 
 # Pinout definition
 pinout:
