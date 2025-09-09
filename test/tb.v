@@ -8,7 +8,7 @@ module ALU_4bit_tb;
   wire [7:0] uo_out;
   reg [3:0] ena;
   reg [3:0] ui_in,uio_in;
-  ALU_4bit sai (.ui_in(ui_in),.uio_in(uio_in),.ena(ena),.uo_out(uo_out));
+  tt_um_ALU4bit sai (.ui_in(ui_in),.uio_in(uio_in),.ena(ena),.uo_out(uo_out));
   initial
     begin
       $dumpfile("dump.vcd"); $dumpvars;
