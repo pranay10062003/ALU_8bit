@@ -1,4 +1,4 @@
-module ALU_4bit(
+module tt_um_ALU4bit(
   output reg [7:0] uo_out,
   input [3:0] ena,
   input [3:0] ui_in,uio_in);
